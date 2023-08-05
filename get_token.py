@@ -1,14 +1,12 @@
 import requests
 import urllib3
-from db import create_table, add_token
 from datetime import datetime
+import ssl
 
 urllib3.disable_warnings()  # This will disable SSL warnings
 
-create_table()
 
-
-def get_access_token():
+def get_access_token_info():
     url = "https://euapi.sciener.com/oauth2/token"
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     data = {
@@ -26,7 +24,6 @@ def get_access_token():
         access_token_info = response.json()
         if access_token_info:
             access_token_info["current_date"] = datetime.now().isoformat()
-            add_token(access_token_info)
             print("Successfully added access token to database")
         else:
             print("Failed to get access token")
@@ -40,8 +37,9 @@ def get_access_token():
         return None
 
 
-if __name__ == "__main__":
-    access_token_info = get_access_token()
+def get_access_token():
+    access_token_info = get_access_token_info()
     if access_token_info:
         access_token = access_token_info.get("access_token")
         print("Access Token:", access_token)
+    return access_token
