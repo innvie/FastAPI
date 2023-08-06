@@ -19,7 +19,7 @@ def string_to_date(date_string):
     return datetime.datetime.strptime(date_string, "%Y-%m-%d").date()
 
 
-def convert_string_date_to_milliseconds(date):
+def convert_string_startdate_to_milliseconds(date):
     mx_date = string_to_date(date)
     now = datetime.datetime.now()
     time = datetime.time(15, 0, 0)
@@ -29,4 +29,13 @@ def convert_string_date_to_milliseconds(date):
         timestamp_milliseconds = int(now.timestamp() * 1000)
     else:
         timestamp_milliseconds = int(mx_datetime.timestamp() * 1000)
+    return timestamp_milliseconds
+
+
+def convert_string_enddate_to_milliseconds(date):
+    mx_date = string_to_date(date)
+    time = datetime.time(12, 0, 0)
+    mx_datetime = datetime.datetime.combine(mx_date, time)
+    # If current time is past 3:00 PM, use the current time
+    timestamp_milliseconds = int(mx_datetime.timestamp() * 1000)
     return timestamp_milliseconds

@@ -1,7 +1,11 @@
 import requests
 import datetime
 import ssl
-from timestamp import convert_string_date_to_milliseconds, get_timestamp_milliseconds
+from timestamp import (
+    convert_string_startdate_to_milliseconds,
+    convert_string_enddate_to_milliseconds,
+    get_timestamp_milliseconds,
+)
 
 
 def get_access_passcode(token, roomNo, startDate, endDate):
@@ -16,8 +20,8 @@ def get_access_passcode(token, roomNo, startDate, endDate):
 
     integer_timestamp = get_timestamp_milliseconds()
 
-    start_date = convert_string_date_to_milliseconds(startDate)
-    end_date = convert_string_date_to_milliseconds(endDate)
+    start_date = convert_string_startdate_to_milliseconds(startDate)
+    end_date = convert_string_enddate_to_milliseconds(endDate)
     date = integer_timestamp
 
     data = {
