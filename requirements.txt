@@ -1,4 +1,6 @@
 fastapi==0.100.0
+fastapi-socketio==0.0.10
+uvicorn==0.23.2
 hypercorn==0.14.4
 requests==2.31.0
 urllib3==2.0.4
