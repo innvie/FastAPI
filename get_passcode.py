@@ -21,7 +21,7 @@ def get_access_passcode(token, room_no, start_date, end_date):
     date = integer_timestamp
 
     data = {
-        "clientId": os.environ["CLIENT_ID"],
+        "clientId": os.environ.get("CLIENT_ID"),
         "clientSecret": os.environ.get("CLIENT_SECRET"),
         "username": os.environ.get("USERNAME"),
         "password": os.environ.get("PASSWORD"),
@@ -36,7 +36,8 @@ def get_access_passcode(token, room_no, start_date, end_date):
     print(data)
 
     try:
-        response = requests.post(os.environ.get("API_URL"), data=data, verify=False, timeout=10)
+        response = requests.post(os.environ.get(
+            "API_URL"), data=data, verify=False, timeout=10)
         response.raise_for_status()  # Raise exception if the response status is not 2xx
         result = response.json()
         print("result:", result)
