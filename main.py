@@ -1,5 +1,6 @@
-import uvicorn
+"""Starting module for the api"""
 from os import getenv
+import uvicorn
 
 if __name__ == "__main__":
     uvicorn.run(

@@ -1,7 +1,10 @@
+"""Module to generate date params"""
 from datetime import datetime
 
 
 def get_date_param():
+    """Generate and return a valid timestamp 'date' parameter for time-sensitive operations, 
+    ensuring it falls within a specified 5-minute range around the current time."""
     # Get the current timestamp in milliseconds
     current_timestamp = int(datetime.now().timestamp() * 1000)
 

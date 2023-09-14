@@ -1,12 +1,14 @@
+"""Module providing a function for getting tokens."""
+from datetime import datetime
 import requests
 import urllib3
-from datetime import datetime
-import ssl
+# import ssl
 
 urllib3.disable_warnings()  # This will disable SSL warnings
 
 
 def get_access_token_info():
+    """function that gets token object with all innvie data"""
     url = "https://euapi.sciener.com/oauth2/token"
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     data = {
@@ -17,7 +19,7 @@ def get_access_token_info():
     }
 
     response = requests.post(
-        url, headers=headers, data=data, verify=False
+        url, headers=headers, data=data, verify=False, timeout=10
     )  # Set verify=False to disable SSL verification
 
     if response.status_code == 200:
@@ -38,6 +40,7 @@ def get_access_token_info():
 
 
 def get_access_token():
+    """function that gets just token string"""
     access_token_info = get_access_token_info()
     if access_token_info:
         access_token = access_token_info.get("access_token")
